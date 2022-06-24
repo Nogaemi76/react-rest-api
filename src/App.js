@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './App.css';
+
 import Card from './components/UI/Card';
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
+    <div>
       {posts.map(post => <Card key={post.id}>
         <h2>{post.title}</h2>
         <p>{post.body}</p>
