@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import Card from './components/UI/Card';
+import ItemsList from './components/Items/ItemsList';
 
 const App = () => {
   const [posts, setPosts] = useState([]);
@@ -16,10 +16,7 @@ const App = () => {
 
   return (
     <div>
-      {posts.map(post => <Card key={post.id}>
-        <h2>{post.title}</h2>
-        <p>{post.body}</p>
-      </Card>)}
+      <ItemsList posts={posts}/>
     </div>
   );
 }
