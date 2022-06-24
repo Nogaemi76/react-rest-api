@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import Card from './components/UI/Card';
 
 const App = () => {
   const [posts, setPosts] = useState([]);
@@ -15,10 +16,10 @@ const App = () => {
 
   return (
     <div className="App">
-      {posts.map(post => <div key={post.id}>
+      {posts.map(post => <Card key={post.id}>
         <h2>{post.title}</h2>
         <p>{post.body}</p>
-      </div>)}
+      </Card>)}
     </div>
   );
 }
