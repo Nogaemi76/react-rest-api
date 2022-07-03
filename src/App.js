@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import AddItem from './components/Items/AddItem';
 import ItemsList from './components/Items/ItemsList';
 
 const App = () => {
@@ -14,9 +15,16 @@ const App = () => {
       .catch(error => console.log(error.message));
   }, []);
 
+  const onAddPostHandler = (newPost) => {
+    console.log("newPost", newPost);
+    setPosts(prevPosts => [newPost, ...prevPosts]);
+    console.log('posts', posts);
+  };
+
   return (
     <div>
-      <ItemsList posts={posts}/>
+      <AddItem onAddPost={onAddPostHandler} />
+      <ItemsList posts={posts} />
     </div>
   );
 }
