@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Card from "../UI/Card";
+import classes from "./AddItem.module.css";
 
 const AddItem = props => {
   const [title, setTitle] = useState("");
@@ -17,14 +18,14 @@ const AddItem = props => {
         "Content-type": "application/json; charset=UTF-8",
       },
     })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      props.onAddPost(data);
-      setTitle('');
-      setBody('');
-    })
-    .catch(error => console.log(error.message));
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        props.onAddPost(data);
+        setTitle("");
+        setBody("");
+      })
+      .catch((error) => console.log(error.message));
   };
 
   const titleChangeHandler = (event) => {
@@ -40,10 +41,12 @@ const AddItem = props => {
   };
 
   return (
-    <Card>
+    <Card className={classes.card}>
       <form onSubmit={submitHandler}>
-        <input type="text" value={title} onChange={titleChangeHandler} />
-        <textarea value={body} onChange={bodyChangeHandler}></textarea>
+        <label htmlFor="title">Enter a title</label>
+        <input id="title" type="text" value={title} onChange={titleChangeHandler} />
+        <label htmlFor="body">Enter text</label>
+        <textarea id="body" value={body} onChange={bodyChangeHandler}></textarea>
         <button type="submit">Add Item</button>
       </form>
     </Card>

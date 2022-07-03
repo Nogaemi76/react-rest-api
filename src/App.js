@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import classes from './App.module.css';
 
 import AddItem from './components/Items/AddItem';
 import ItemsList from './components/Items/ItemsList';
@@ -22,7 +23,7 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className={classes.app}>
       <AddItem onAddPost={onAddPostHandler} />
       <ItemsList posts={posts} />
     </div>
