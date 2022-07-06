@@ -21,6 +21,7 @@ const AddItem = props => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        data.id = Math.random().toString(36).slice(2);
         props.onAddPost(data);
         setTitle("");
         setBody("");
@@ -44,10 +45,21 @@ const AddItem = props => {
     <Card className={classes.card}>
       <form onSubmit={submitHandler}>
         <label htmlFor="title">Enter a title</label>
-        <input id="title" type="text" value={title} onChange={titleChangeHandler} />
+        <input
+          id="title"
+          type="text"
+          value={title}
+          onChange={titleChangeHandler}
+        />
         <label htmlFor="body">Enter text</label>
-        <textarea id="body" value={body} onChange={bodyChangeHandler}></textarea>
-        <button type="submit">Add Item</button>
+        <textarea
+          id="body"
+          value={body}
+          onChange={bodyChangeHandler}
+        ></textarea>
+        <button type="submit">
+          Add Item
+        </button>
       </form>
     </Card>
   );
