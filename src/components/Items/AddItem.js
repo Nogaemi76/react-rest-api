@@ -2,31 +2,32 @@ import { useState } from "react";
 import Card from "../UI/Card";
 import classes from "./AddItem.module.css";
 
-const AddItem = props => {
+const AddItem = (props) => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
   const addPostHandler = async (title, body) => {
-    await fetch("https://jsonplaceholder.typicode.com/posts", {
-      method: "POST",
-      body: JSON.stringify({
-        title: title,
-        body: body,
-        userId: Math.random().toString(36).slice(2),
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        data.id = Math.random().toString(36).slice(2);
-        props.onAddPost(data);
-        setTitle("");
-        setBody("");
-      })
-      .catch((error) => console.log(error.message));
+    try {
+      let response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+        method: "POST",
+        body: JSON.stringify({
+          title: title,
+          body: body,
+          userId: Math.random().toString(36).slice(2),
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+      let data = await response.json();
+      console.log(data);
+      data.id = Math.random().toString(36).slice(2);
+      props.onAddPost(data);
+      setTitle("");
+      setBody("");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const titleChangeHandler = (event) => {
@@ -57,14 +58,10 @@ const AddItem = props => {
           value={body}
           onChange={bodyChangeHandler}
         ></textarea>
-        <button type="submit">
-          Add Item
-        </button>
+        <button type="submit">Add Item</button>
       </form>
     </Card>
   );
-
 };
-
 
 export default AddItem;
