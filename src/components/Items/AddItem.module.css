@@ -2,18 +2,18 @@
   background: #42AB9E;
 }
 
-form {
+.card form {
   padding: 1rem;
 }
 
-label {
+.card label {
   display: block;
   font-weight: bold;
   color: white;
   margin-bottom: .5rem;
 }
 
-input, textarea {
+.card input, .card textarea {
   width: 100%;
   border: none;
   border-radius: .2rem;
@@ -21,7 +21,7 @@ input, textarea {
   padding: .5rem;
 }
 
-button {
+.card button {
   width: 100%;
   background: #DF6C4F;
   color: white;
